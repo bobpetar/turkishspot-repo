@@ -39,9 +39,9 @@
                 <%= rating_for @place, "name", disable_after_rate: false %>
               <% end %>
               <hr>
-              <h5><strong>Country: </strong> <%= @place.country.capitalize %></h5>
-              <h5><strong>City: </strong><%= @place.city.capitalize %></h5>
-              <h5><strong>Address: </strong><%= @place.address.capitalize %></h5>
+              <h5><strong>Country: </strong> <%= @place.country.split.map(&:capitalize).join(' ') %></h5>
+              <h5><strong>City: </strong><%= @place.city.split.map(&:capitalize).join(' ') %></h5>
+              <h5><strong>Address: </strong><%= @place.address.split.map(&:capitalize).join(' ') %></h5>
               <h5><strong>Phone: </strong><%= @place.phone %></h5>
               <% if (@place.fb.size > 2) || (@place.twit.size > 2) || (@place.insta.size > 2) || (@place.web.size > 2) %>
                 <h6><strong>Follow us on: </strong></h6>
@@ -64,13 +64,13 @@
             <div class="col-md-5">
               <h5><%= link_to 'Cities', cities_path, class: "link" %></h5>
               <% @cities.each do |city| %>
-                <h6><%= link_to city.city_name.capitalize, city %> (<small><%= pluralize(city.countPlace, "place") %></small>)</h6>
+                <h6><%= link_to city.city_name.split.map(&:capitalize).join(' '), city %> (<small><%= pluralize(city.countPlace, "place") %></small>)</h6>
               <% end %>
               <h6><%= link_to 'View all cities', cities_path %></h6>
               <br>
               <h5><%= link_to "Categories", categories_path, class: "link" %></h5>
               <% @cate.each do |category| %>
-                <h6><%= link_to category.name, category %> (<small><%= pluralize(category.places.count, "place") %></small>)</h6>
+                <h6><%= link_to category.name.split.map(&:capitalize).join(' '), category %> (<small><%= pluralize(category.places.count, "place") %></small>)</h6>
               <% end %>
               <h6><%= link_to 'View all categories', categories_path %></h6>
             </div>

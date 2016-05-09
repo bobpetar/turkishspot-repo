@@ -24,10 +24,10 @@
               <tbody>
                 <% @cities.each do |city| %>
                   <tr>
-                    <td align="center"><%= link_to city.city_name, city %> (<small><%= pluralize(city.countPlace, "place") %></small>)</td>
+                    <td align="center"><%= link_to city.city_name.split.map(&:capitalize).join(' '), city %> (<small><%= pluralize(city.countPlace, "place") %></small>)</td>
                     <td align="center"><%= link_to 'Show', city %></td>
                     <% if user_signed_in? %>
-                      <% if current_user == city.user %>
+                      <% if (current_user == city.user) || (current_user.admin?) %>
                         <td align="center"><%= link_to 'Edit', edit_city_path(city) %></td>
                         <td align="center"><%= link_to 'Delete', city, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                       <% end %>
